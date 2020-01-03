@@ -1,0 +1,13 @@
+partition function
+the logic is that, we start from the leftmost element and keep track of index of smaller (or equal to) elements as i. While traversing, if we find a smaller element, we swap current element with arr[i]. Otherwise we ignore current element.then we swap the pivot element with the index of i++ for the correct placement of the pivot element.
+
+quick sort function:
+first we call the partition function on the array and store the pivot position and recursively call the quick sort function on divided arrays from the pivot.
+
+the time complexity:
+in best case: O(n log n). when the pivot element is the median.
+in worst case: o(n^2). when the array is already sorted.
+
+the space complexity:
+in best case: O(log n). bcoz recursive stack will be used to store log n extra arrays.
+in worst case: o(n). in this bcoz recursive stack will be used to store n extra arrays.
