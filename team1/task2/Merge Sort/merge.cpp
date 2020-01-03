@@ -1,49 +1,41 @@
-template<class t>
-class sort {
-	t *list;
-	public:
-		sort(t *data, int size) {
-			list = data;
-			mergesort(0,size-1);
-		}
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
 
-		void mergesort(int low, int high) {
-			int mid;
-			if(low < high) {
-				mid = (low + high) /2;
-				mergesort(low, mid);
-				mergesort(mid + 1, high);
-				merge(low, high, mid);
-			}
-		}
+template<typename Iterator> 
+void merge(Iterator begin, Iterator middle, Iterator end, Iterator res) {
+	Iterator a = begin, b = middle, r = res;
 
-		void merge(int low, int high, int mid) {
-			t temp[10];
-			int i = low, j, l = low, m = mid + 1;
-			while(l <= mid && m <= high) {
-				if(list[l] <= list[m]) {
-					temp[i] = list[l];
-					l++;
-				}
-				else {
-					temp[i] = list[m];
-					m++;
-				}
-				i++;
-			}
-			if(l > mid) {
-				for(j = m; j <= high; j++) {
-					temp[i] = list[j];
-					i++;
-				}
-			}
-			else {
-				for(j = l; j <= mid; j++) {
-					temp[i] = list[j];
-					i++;
-				}
-			}
-			for(j = low; j <= high; j++)
-				list[j] = temp[j];
-		}
-};
+	while (a < middle && b < end)
+		if (*a < *b) *r++ = *a++;
+		else *r++ = *b++;
+
+	while (a < middle) *r++ = *a++;
+	while (b < end) *r++ = *b++;
+	while (begin < end) *begin++ = *res++;
+}
+
+template<typename Iterator> 
+void mergesort(Iterator begin, Iterator end, Iterator res)
+{
+	int s = end-begin;
+	if (s > 1)
+	{
+		Iterator middle = begin+s/2;
+		mergesort(begin, middle, res);
+		mergesort(middle, end, res);
+		merge(begin, middle, end, res);
+	}
+}
+
+int main() {
+    int liist[] = {9, 8, 7, 6, 5, 4, 3, 2, 1, 10};
+    int sorted[10];
+    mergesort(liist, liist + 10, sorted);
+
+    for (int i = 0; i < 10; i++)
+	cout << sorted[i] << " ";
+	cout << endl;
+	return 0;
+}
