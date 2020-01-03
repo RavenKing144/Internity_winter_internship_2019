@@ -1,3 +1,7 @@
+# include <vector.h>
+# include "prior.h"
+# include <iostream.h>
+
 template <class Iterator>
 void build_heap (Iterator start, Iterator stop) {
 	unsigned int heapSize = stop - start;
@@ -21,3 +25,15 @@ void heap_sort(Iterator start, Iterator stop) {
 	sort_heap (start, stop);
 }
 
+void main() {
+	vector<int> v(100);
+	for (int i = 0; i < 100; i++)
+		v[i] = rand();
+	heap_sort(v.begin(), v.end());
+	vector<int>::iterator itr = v.begin();
+	while (itr != v.end()) {
+		cout << *itr << " ";
+		itr++;
+		}
+	cout << "\n";
+}
