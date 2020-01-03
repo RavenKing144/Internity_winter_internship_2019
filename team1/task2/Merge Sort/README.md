@@ -7,9 +7,40 @@ copy any remaining elements into the target array.
 
 ### Pseudocode:
 
+* A : input array
+* p : starting index of array
+* r : ending index of array 
 
-
-
+```
+MergeSort(A, p, r) {
+    if(p<r) {
+        q=(p+r)/2
+        MergeSort(A,p,q)
+        MergeSort(A,q+1,r)
+        merege(A,p,q,r)
+}
+merge(A,p,q,r) {
+    Left[] <- A[p....q], Right[] <- A[q+1......r]
+    i = 0, j=0, k=p
+    while(i<q-p+1 && j<r-q) {
+        if(Left[i] < Right[j] {
+            A[k] <- Right[j]
+            i++
+        else
+            A[k]<-Right[j]
+            j++
+        k++
+    while(i<q-p+1) {
+        A[k]<-Left[i]
+        k++
+        i++
+    while(j<r-q) {
+        A[k]<-Right[j]
+        k++
+        j++
+    }
+}
+```
 
 ### Analysis:
 
