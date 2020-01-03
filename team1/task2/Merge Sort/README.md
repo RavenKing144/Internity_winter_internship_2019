@@ -13,7 +13,7 @@ copy any remaining elements into the target array.
 
 * Time Complexity: O(nlog(n)))
 
-Reccurence Relation T(n)=2T(n/2)+O(n)
+Recurrence Relation T(n)=2T(n/2)+O(n)
 
 * Space Complexity: O(n)
 
