@@ -11,10 +11,10 @@ copy any remaining elements into the target array.
 
 ### Analysis:
 
-Time Complexity: O(nlog(n)))
+* Time Complexity: O(nlog(n)))
 
 Reccurence Relation T(n)=2T(n/2)+O(n)
 
-Space Complexity: O(n)
+* Space Complexity: O(n)
 
 Because second array is required with the same size as the array to be sorted.
