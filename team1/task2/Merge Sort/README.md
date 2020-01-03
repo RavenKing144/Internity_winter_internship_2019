@@ -17,7 +17,7 @@ MergeSort(A, p, r) {
         q = (p+r)/2
         MergeSort(A, p, q)
         MergeSort(A, q+1, r)
-        merege(A, p, q, r)
+        merge(A, p, q, r)
 }
 merge(A, p, q, r) {
     Left[] <- A[p....q], Right[] <- A[q+1......r]
