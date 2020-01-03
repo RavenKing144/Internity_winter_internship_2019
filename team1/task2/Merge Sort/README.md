@@ -13,8 +13,8 @@ copy any remaining elements into the target array.
 
 ```
 MergeSort(A, p, r) {
-    if(p<r) {
-        q=(p+r)/2
+    if(p < r) {
+        q = (p+r)/2
         MergeSort(A, p, q)
         MergeSort(A, q+1, r)
         merege(A, p, q, r)
