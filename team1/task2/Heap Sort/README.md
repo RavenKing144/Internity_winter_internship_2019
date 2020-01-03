@@ -39,8 +39,8 @@ HEAP-SORT (A)
 ```
 
 ### Analysis
-- Time Complexity: O(nlog(n))
-maximum levels O(log n). At each level,comparison is done which  takes O (1). The total time for heapify is O(log n). Build max-heap takes O (n) running time. 
+- Time Complexity:
+maximum levels O(log n). At each level,comparison is done which  takes O(1). The total time for heapify is O(log n). Build max-heap takes O(n) running time. 
 The total running time of Heap-Sort is O(nlog(n)).
 
 Best case is O(n) when everything in the input is identical.
