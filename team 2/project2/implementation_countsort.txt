@@ -1,0 +1,9 @@
+EXPLAINATION:
+Counting sort  is a sorting technique based on keys between a specific range. It works by counting the number of objects having distinct key values. Counting sort is efficient if the range of input data is not significantly greater than the number of objects to be sorted. Counting sort can be extended to work for negative inputs also.
+Steps:
+1) Take a count array to store the count of each unique object.
+2) Modify the count array such that each element at each index stores the sum of previous counts. 
+3) Output each object from the input sequence followed by decreasing its count by 1.
+
+Time Complexity: O(n+k) where n is the number of elements in input array and k is the range of input.
+Auxiliary Space: O(n+k)
