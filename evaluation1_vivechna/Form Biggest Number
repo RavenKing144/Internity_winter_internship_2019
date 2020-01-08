@@ -1,0 +1,69 @@
+#include <iostream> 
+#include <string> 
+#include <vector> 
+#include <algorithm> 
+using namespace std;
+
+ 
+ 
+int
+Compare (string X, string Y) 
+{
+  string XY = X.append (Y);
+  
+string YX = Y.append (X);
+  
+return XY.compare (YX) > 0 ? 1 : 0;
+
+}
+
+
+void
+Largest (vector < string > arr) 
+{
+  sort (arr.begin (), arr.end (), Compare);
+  
+ 
+for (int i = 0; i < arr.size (); i++)
+    
+cout << arr[i];
+
+} 
+ 
+ 
+int
+
+main () 
+{
+  int t;
+  
+cin >> t;
+  
+for (int i = 0; i < t; i++)
+    
+    {
+      int n;
+      
+cin >> n;
+      
+vector < string > arr;
+      
+ 
+for (int i = 0; i < n; i++)
+	
+	{
+	  string m;
+	  
+cin >> m;
+	  
+arr.push_back (m);
+	
+} 
+Largest (arr);
+    } 
+ 
+return 0;
+
+}
+
+
