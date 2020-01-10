@@ -1,0 +1,8 @@
+hello:hi
+dog:kutta
+cat:billi
+a:ab
+hell:hurr
+help:madad
+he:hes
+helping:madadad
