@@ -1,0 +1,11 @@
+we use a  Divide and Conquer method to implement merge sort.
+firstly we divide input array in two halves, calls itself for the two halves and then merges the two sorted halves using the merge function.
+
+merge function:
+fo this we have created a temp array to put the elements in it in sorted way by comparing the elements as both are already sorted.
+
+merge sort function:
+calling the function recursively on 1 half and again on the other half and then using the merge function to merge all the sorted arrays together.
+
+the time complexity is O(n log n) for all the cases may it be best or worse.
+the space complexity is O(n).

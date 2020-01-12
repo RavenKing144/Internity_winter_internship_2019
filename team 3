@@ -1,3 +1,4 @@
+
 #include<bits/stdc++.h>
 using namespace std;
 class Stack{
@@ -20,7 +21,7 @@ public:
    q1=q2;
    q2=q;
    }
-void pop()
+ void pop()
 {
   if(q1.empty())
      return;
@@ -38,9 +39,62 @@ int size()
      return curr_size;
 }
 };
+
+   '
+
+   
+    
+   
+     
+
+#include <bits/stdc++.h>
+
+
+struct Queue {
+     stack<int> s1,s2;
+      
+
+     void enQueue(int x)
+    {
+      while (!s1.empty()){
+     s2.push(s1.top());
+     s1.pop();
+    }
+     s1.push(x);
+     
+    while(s2.empty()) {
+              s1.push(s2.top));
+              s2.pop();
+
+    }
+}
+     
+
+   int deQueue()
+   {
+      if(s1.empty()){
+      cout <<"Q is empty" ;
+      exit(0):
+     }
+        
+
+int x=s1.top();
+s1.pop();
+return x; 
+};
+
 int main()
 {
-   Stack s;
+ Queue q;
+ q. enQueue(4);
+q. enQueue(5);
+ q. enQueue(6);
+
+cout <<q.deQueue()  <<'\n' ;
+cout <<q. deQueue()  <<'\n' ;
+cout <<q. deQueue()  <<'\n' ;
+
+Stack s;
    s.push(1);
    s.push(2);
    s.push(3);
@@ -51,9 +105,6 @@ int main()
    s.pop();
    cout<<s.top()<<endl;
    cout<<"current size:"<<s.size()<<endl;
-   return 0;'
-   }
-   
-    
-   
-     
+   return 0;
+return 0;
+

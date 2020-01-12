@@ -1,3 +1,5 @@
+STACK USING QUEUE:
+
 In my code i have made five functions namely:
 1) push function have time complexity: O(n) which pushes elements intop the stack
 2) pop function having time complexity O(1) which pops the lastly added element in the stack
@@ -24,3 +26,21 @@ checking the size of the non empty queue.
 
 for isEmpty function:
 checking both the queues are empty or not.
+
+
+QUEUE USING STACK:
+
+EXPLAINATION:
+
+Implementation of queue using stack:
+In this we have to implement the FIFO rule of queue using stacks. As we know that stack is LIFO and queue is FIFO, so we need two stacks to implement queue using stack.
+For example: Suppose we push "1", "2", "3" to a stack. If we are trying to implement a queue and we call the dequeue method 3 times, we actually want the elements to come out in the order: "1", "2, "3", which is in the opposite order they would come out if we popped from the stack. So, basically, we need to access the elements in the reverse order that they exist in the stack. The following algorithm will implement a queue using two stacks.
+
+1) When calling the enqueue method, simply push the elements into the stack.
+Time complexity : O(1)  Space complexity: O(n)
+2) If the dequeue method is called, push all the elements from stack1 to stack2, which reversed the order of elements.Now pop from stack 2.
+Time complexity : O(n)  Space complexity: O(1)
+
+So overall:
+Time complexity: O(n)
+Space complexity: O(n)

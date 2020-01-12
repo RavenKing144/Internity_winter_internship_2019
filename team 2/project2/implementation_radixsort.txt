@@ -1,0 +1,8 @@
+Explaination:
+When the range of the elements is from 1 to n^2, the radix sort is used. The idea of Radix Sort is to do digit by digit sort starting from least significant digit to most significant digit. Radix sort uses counting sort as a subroutine to sort.
+Steps:
+1) First sort the elements starting from least significant to most significant.
+2) At each time do count sort and sort the elements accordingly.
+3) Sort the elements accordingly and finally we get the sorted array.
+Time Complexity: O(nk) where n is the number of elements in input array and k is the range of input.
+Space Complexity: O(n+k)

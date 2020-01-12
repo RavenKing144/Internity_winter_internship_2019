@@ -1,0 +1,81 @@
+#include <bits/stdc++.h> 
+using namespace std; 
+using namespace std::chrono;
+ void swap(int* a, int* b) 
+{ 
+	int t = *a; 
+	*a = *b; 
+	*b = t; 
+} 
+/*
+partition function
+the logic is that, we start from the leftmost element and keep track of index of smaller (or equal to) elements as i. 
+While traversing, if we find a smaller element, we swap current element with arr[i]. Otherwise we ignore current element.
+then we swap the pivot element with the index of i++ for the correct placement of the pivot element.
+*/
+int partition (int arr[], int low, int high) 
+{ 
+	int pivot = arr[high]; 
+	int i = (low - 1); 
+
+	for (int j = low; j <= high - 1; j++) 
+	{ 
+		 
+		if (arr[j] < pivot) 
+		{ 
+			i++;  
+			swap(&arr[i], &arr[j]); 
+		} 
+	} 
+	swap(&arr[i + 1], &arr[high]); 
+	return (i + 1); 
+} 
+
+/*
+first we call the partition function on the array and store the pivot position and 
+recursively call the quick sort function on divided arrays from the pivot.
+*/
+void quickSort(int arr[], int low, int high) 
+{ 
+	if (low < high) 
+	{ 
+		
+		int pi = partition(arr, low, high);  
+		quickSort(arr, low, pi - 1); // recursively calling the function on the elements smaller than pivot
+		quickSort(arr, pi + 1, high); // recursively calling the function on the elements bigger than pivot
+	} 
+} 
+
+void printArray(int arr[], int size) 
+{ 
+	int i; 
+	for (i = 0; i < size; i++) 
+		cout << arr[i] << " "; 
+	cout << endl; 
+} 
+
+int main() 
+{ 
+	int arr[1000];
+    //creating random numbers
+    for(int i=0;i<1000;i++){
+        arr[i]=rand();
+        cout<<arr[i]<<" ";
+    }
+    // for worst case
+    /*int c=100000
+    for (int i=0;i<1000;i++){
+    	arr[i]=c++;
+    	cout<<arr[i]<<" ";
+    }*/
+    cout<< endl;
+	int n = sizeof(arr) / sizeof(arr[0]); 
+    auto start = high_resolution_clock::now();
+	quickSort(arr, 0, n - 1);
+	auto stop = high_resolution_clock::now();  
+	printArray(arr, n); 
+	auto duration = duration_cast<microseconds>(stop - start);
+    cout << duration.count() << endl;
+	return 0; 
+} 
+
