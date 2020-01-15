@@ -1,0 +1,12 @@
+In Jacobi, each iteration is done using a set of previous values, even if 
+new values become available in the middle of an iteration. 
+In Gauss-Seidel, as soon as you have a new iterate for a particular component, you use it for all subsequent computation.
+
+If you study the computational form of Gauss-Seidel, you should find 
+that it becomes identical to Jacobi if you take the kth generation iterates
+instead of the (k+1)th generation iterates, for the summation that handles
+values to the left of the main diagonal of your matrix.
+
+Gauss elimination involves combining equations to eliminate unknowns.
+The fundamental idea of this equation is to add multiples of one equation to other and to eliminate one variable 
+and to continue this process until only one variable is left.
