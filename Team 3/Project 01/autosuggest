@@ -1,0 +1,216 @@
+#include<iostream.h>
+#include<conio.h> 
+#define ALPHABET_SIZE (26) 
+
+#define CHAR_TO_INDEX(c) ((int)c - (int)'a') 
+
+struct Trie { 
+	bool isEndOfWord; 
+	unordered_map<char, Trie*> map; 
+	string meaning; 
+}; 
+
+Trie* getNewTrieNode() 
+{ 
+	Trie* node = new Trie; 
+	node->isEndOfWord = false; 
+	return node; 
+} 
+
+void insert(Trie*& root, const string& str, 
+			const string& meaning) 
+{ 
+
+
+	if (root == NULL) 
+		root = getNewTrieNode(); 
+
+	Trie* temp = root; 
+	for (int i = 0; i < str.length(); i++) { 
+		char x = str[i]; 
+
+		if (temp->map.find(x) == temp->map.end()) 
+			temp->map[x] = getNewTrieNode(); 
+
+		temp = temp->map[x]; 
+	} 
+
+	temp->isEndOfWord = true; 
+	temp->meaning = meaning; 
+} 
+
+string getMeaning(Trie* root, const string& word) 
+{ 
+
+	if (root == NULL) 
+		return ""; 
+
+	Trie* temp = root; 
+
+	for (int i = 0; i < word.length(); i++) { 
+		temp = temp->map[word[i]]; 
+		if (temp == NULL) 
+			return ""; 
+	} 
+
+	if (temp->isEndOfWord) 
+		return temp->meaning; 
+	return ""; 
+} 
+
+
+
+struct TrieNode 
+{ 
+	struct TrieNode *children[ALPHABET_SIZE]; 
+	bool isWordEnd; 
+}; 
+
+struct TrieNode *getNode(void) 
+{ 
+	struct TrieNode *pNode = new TrieNode; 
+	pNode->isWordEnd = false; 
+
+	for (int i = 0; i < ALPHABET_SIZE; i++) 
+		pNode->children[i] = NULL; 
+
+	return pNode; 
+} 
+
+void insert(struct TrieNode *root, const string key) 
+{ 
+	struct TrieNode *pCrawl = root; 
+
+	for (int level = 0; level < key.length(); level++) 
+	{ 
+		int index = CHAR_TO_INDEX(key[level]); 
+		if (!pCrawl->children[index]) 
+			pCrawl->children[index] = getNode(); 
+
+		pCrawl = pCrawl->children[index]; 
+	} 
+
+	pCrawl->isWordEnd = true; 
+} 
+bool search(struct TrieNode *root, const string key) 
+{ 
+	int length = key.length(); 
+	struct TrieNode *pCrawl = root; 
+	for (int level = 0; level < length; level++) 
+	{ 
+		int index = CHAR_TO_INDEX(key[level]); 
+
+		if (!pCrawl->children[index]) 
+			return false; 
+
+		pCrawl = pCrawl->children[index]; 
+	} 
+
+	return (pCrawl != NULL && pCrawl->isWordEnd); 
+} 
+
+bool isLastNode(struct TrieNode* root) 
+{ 
+	for (int i = 0; i < ALPHABET_SIZE; i++) 
+		if (root->children[i]) 
+			return 0; 
+	return 1; 
+} 
+
+void suggestionsRec(struct TrieNode* root, string currPrefix) 
+{ 
+	if (root->isWordEnd) 
+	{ 
+		cout << currPrefix; 
+		cout << endl; 
+	} 
+
+	if (isLastNode(root)) 
+		return; 
+
+	for (int i = 0; i < ALPHABET_SIZE; i++) 
+	{ 
+		if (root->children[i]) 
+		{ 
+			currPrefix.push_back(97 + i); 
+
+			suggestionsRec(root->children[i], currPrefix); 
+		} 
+	} 
+} 
+
+int printAutoSuggestions(TrieNode* root, const string query) 
+{ 
+	struct TrieNode* pCrawl = root; 
+	int level; 
+	int n = query.length(); 
+	for (level = 0; level < n; level++) 
+	{ 
+		int index = CHAR_TO_INDEX(query[level]); 
+
+		if (!pCrawl->children[index]) 
+			return 0; 
+
+		pCrawl = pCrawl->children[index]; 
+	} 
+
+	bool isWord = (pCrawl->isWordEnd == true); 
+
+	bool isLast = isLastNode(pCrawl); 
+
+	if (isWord && isLast) 
+	{ 
+		cout << query << endl; 
+		return -1; 
+	} 
+
+	if (!isLast) 
+	{ 
+		string prefix = query; 
+		suggestionsRec(pCrawl, prefix); 
+		return 1; 
+	} 
+} 
+
+int main() 
+{ 
+	struct TrieNode* root = getNode(); 
+	insert(root, "hello"); 
+	insert(root, "dog"); 
+	insert(root, "hell"); 
+	insert(root, "cat"); 
+	insert(root, "a"); 
+	insert(root, "hel"); 
+	insert(root, "help"); 
+	insert(root, "helps"); 
+	insert(root, "helping"); 
+	int comp = printAutoSuggestions(root, "hel"); 
+
+	if (comp == -1) 
+		cout << "No other strings found with this prefix\n"; 
+
+	else if (comp == 0) 
+		cout << "No string found with this prefix\n"; 
+
+	Trie* root1 = NULL; 
+
+	// Build the dictionary 
+	insert(root1, "language", "the method of human communication"); 
+	insert(root1, "computer", "A computer is a machine that can be \ 
+	instructed to carry out sequences of arithmetic or \ 
+logical operations automatically via computer programming"); 
+	insert(root1, "map", "a diagrammatic representation \ 
+of an area"); 
+	insert(root1, "book", "a written or printed work \ 
+consisting of pages glued or sewn together along one \ 
+side and bound in covers."); 
+	insert(root1, "science", "the intellectual and \ 
+practical activity encompassing the systematic study \ 
+of the structure and behaviour of the physical and \ 
+natural world through observation and experiment."); 
+
+	string str = "map"; 
+	cout << getMeaning(root1, str); 
+
+	return 0; 
+} 
