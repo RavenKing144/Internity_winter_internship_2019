@@ -42,7 +42,7 @@ int main()
     
     Sample output:-
 
-    0.5008 0.99968 0.49984
+    0.5 1 0.5
     
     */
     for(i=0;i<n;i++)
@@ -59,7 +59,7 @@ int main()
         cin >> b[i];
     }
     
-    for(i=0;i<5;i++)
+    for(i=0;i<25;i++)
     {
         x = siedel(a,x,b);
     }
