@@ -1,0 +1,69 @@
+1.COUNTING SORT
+
+Till now, all the sorting algorithms we have learned were comparison sort i.e., they compare the values of the elements to sort them but the counting sort is a non-comparison sort. It means that it sorts the input without comparing the values of the elements.
+
+Comparison sorts have a lower bound of Omega(n\lg{n}) i.e., they can't perform better than this. And this is where non-comparison sorts get interesting because they can beat this lower bound and can perform faster like in linear time ($\Theta(n)$). This is because non-comparison sorts are generally implemented with few restrictions like counting sort has a restriction on its input which we are going to study further.
+
+So, the restriction of the counting sort is that the input should only contain integers and they should lie in the range of 0 to k, for some integer k. For example, if the value of k is 10, then all the inputs must be between 0 to 10.
+
+Also, we don't want the value of k to be too high because that will increase the running time of the counting sort. And we will see that the counting sort takes \Theta(n)$ time when k is $O(n)$.
+
+So, let's see the working of the counting sort.
+
+
+ANALYSIS OF COUNING SORT
+
+The analysis of the counting sort is simple. For the first for loop i.e., to initialize the temporary array, we are iterating from 0 to k, so its running time is $\Theta(k)$. The next loop is running from 1 to A.length and thus has a running time of $\Theta(n)$. The next for loop is again iterating over the temporary array from 1 to k and thus has a running time of $\Theta(k)$. The last loop is again $\Theta(n)$.
+
+So, the overall running time of the counting sort is Theta(k+n).
+
+As stated earlier in this chapter, when the value of k will be around the value of n i.e., k=O(n), then the running time of the counting sort will reduce to $O(n)$ and thus the counting sort will run in linear time. And that's why we were saying that we want the value of k to be of $O(n)$.
+ 
+2.Heapsort
+All the three algorithms we have used so far didn't require any specific data structure but heapsort does. It is implemented using heaps. As stated earlier in this course, some of the algorithms we will study in this course will be implemented using some data structures. So, it is recommended to read articles on data structure first. However, if you are familiar with data structures, then you are good to go
+ANALYSIS OF HEAP SORT
+
+The analysis of the code is simple. There is a while loop which is running n times and each time it is executing 3 statements. The first two statements (swap(A[1], A[A.heap_size]) and A.heap_size = A.heap_size-1) will take a constant time but the last statement i.e., MAX-HEPAPIFY(A, 1) is going to take $O(\lg{n})$ time. So, the algorithm is going to take a total of $O(n\lg{n})$ time.
+
+3. Merge Sort
+
+Merge sort is the algorithm that is based on Divide and Conquer. According to Divide and Conquer, it first divides an array into smaller subarrays and then merges them together to get a sorted array. 
+
+
+The real thing lies in the combining part. We combine the arrays back together in such a way that we get the sorted array. So, we will make two functions, one to break the arrays into subarrays and another to merge the smaller arrays together to get a sorted array.
+
+
+Analysis of Merge sort
+
+Now, the analysis of the MERGE-SORT function is simple and we have already done this kind of analysis in previous chapters. The MERGE-SORT function is breaking the problem size of n into two subproblems of size [Math Processing Error] each. The comparison (if start < right) and calculation of middle (middle = floor((start+end)/2)) are constant time taking processes. 
+
+
+4. Quick Sort
+
+
+Quicksort is another sorting algorithm which uses Divide and Conquer for its implementation. Quicksort is also the practical choice of algorithm for sorting because of its good performance in the average case which is 
+Θ(nlgn)
+. Unlike the Merge Sort, Quicksort doesn't use any extra array in its sorting process and even if its average case is same as that of the Merge Sort, the hidden factors of 
+Θ(nlgn)
+ are generally smaller in the case of Quicksort.
+
+So, Quicksort sounds like the perfect sorting algorithm we always needed, but hold on for a second, Quicksort is also not as perfect as it sounds. In the worst case, Quicksort gives us a quadratic (O(n2)) performance which might be concerning in many cases. So, let's move forward and discuss in detail about Quicksort.
+
+Quicksort first chooses a pivot and then partition the array around this pivot. In the partitioning process, all the elements smaller than the pivot are put on one side of the pivot and all the elements larger than it on the other side
+
+
+
+5. Radix Sort
+
+
+The lower bound for Comparison based sorting algorithm (Merge Sort, Heap Sort, Quick-Sort .. etc) is Ω(nLogn), i.e., they cannot do better than nLogn.
+Counting sort is a linear time sorting algorithm that sort in O(n+k) time when elements are in range from 1 to k.
+
+6.Insertion Sort
+
+Insertion sort is a simple sorting algorithm that works the way we sort playing cards in our hands.
+Algorithm
+// Sort an arr[] of size n
+insertionSort(arr, n)
+Loop from i = 1 to n-1.
+Uses: Insertion sort is used when number of elements is small. It can also be useful when input array is almost sorted, only few elements are misplaced in complete big array.
