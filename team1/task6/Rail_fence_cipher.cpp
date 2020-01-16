@@ -1,0 +1,132 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+using namespace std;
+
+string encrypt(string text, int key)
+{
+	char rail[key][(text.length())];
+
+	for (int i=0; i < key; i++)
+		for (int j = 0; j < text.length(); j++)
+			rail[i][j] = '\n';
+
+	bool dir = false;
+	int row = 0, col = 0;
+
+	for (int i=0; i < text.length(); i++)
+	{
+		if (row == 0 || row == key-1)
+			dir = !dir;
+
+		rail[row][col++] = text[i];
+
+		dir?row++ : row--;
+	}
+
+	string result;
+	for (int i=0; i < key; i++)
+		for (int j=0; j < text.length(); j++)
+			if (rail[i][j]!='\n')
+				result.push_back(rail[i][j]);
+
+	return result;
+}
+
+string decrypt(string cipher, int key)
+{
+
+	char rail[key][cipher.length()];
+
+	for (int i=0; i < key; i++)
+		for (int j=0; j < cipher.length(); j++)
+			rail[i][j] = '\n';
+	bool dir;
+
+	int row = 0, col = 0;
+
+	for (int i=0; i < cipher.length(); i++)
+	{
+		if (row == 0)
+			dir = true;
+		if (row == key-1)
+			dir = false;
+		rail[row][col++] = '*';
+
+		dir?row++ : row--;
+	}
+	int index = 0;
+	for (int i=0; i<key; i++)
+		for (int j=0; j<cipher.length(); j++)
+			if (rail[i][j] == '*' && index<cipher.length())
+				rail[i][j] = cipher[index++];
+
+	string result;
+
+	row = 0, col = 0;
+	for (int i=0; i< cipher.length(); i++)
+	{
+
+		if (row == 0)
+			dir = true;
+		if (row == key-1)
+			dir = false;
+
+		if (rail[row][col] != '*')
+			result.push_back(rail[row][col++]);
+
+		dir?row++: row--;
+	}
+	return result;
+}
+
+int main()
+{int x;
+int key;
+string text,cipher;
+string temp;
+fstream textfile, cipherfile;
+ cout<<"\n\n RAIL FENCE CIPHER TOOL\n\n"<<
+   "\nPress 1 for encoding and 2 for decoding the text and cipher files respectively\n";
+cin>>x;
+
+if(x==1)
+  {textfile.open ("text.txt");
+  while(!textfile.eof())
+        {
+	        getline(textfile,temp);
+	         text.append (temp);
+
+        }
+  cout<<"\nEnter key\n"<<endl;
+  cin>>key;
+  cout<< encrypt(text,key)<<endl;
+
+	cipherfile.open("cipher.txt");
+	cipherfile << encrypt(text,key) ;
+	cipherfile.close();
+  textfile.close();
+}
+else if(x==2)
+
+{ cout<<"\n\nEnter key\n\n";
+cin>>key;
+cipherfile.open("cipher.txt");
+while(!cipherfile.eof())
+        {
+	        getline(cipherfile,temp);
+	         cipher.append (temp);
+
+        }
+  textfile.open("text.txt");
+  textfile<<decrypt(cipher,key);
+
+  cipherfile.close();
+  textfile.close();
+  }
+
+else
+    cout<<"\n Only encryption and decryption is possible\n";
+	return 0;
+}
+
