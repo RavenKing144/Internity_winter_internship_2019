@@ -28,7 +28,7 @@ void printBoard(char board[])
 	}
 }
 
-int isGameOver(char board[], char Player_1, char Player_2)
+int isGameOver(char board[], char board_bool[], char Player_1, char Player_2)
 {
 	if (board[0] == board[1] && board[1] == board[2])
 	{
@@ -110,9 +110,9 @@ int isGameOver(char board[], char Player_1, char Player_2)
 			return 2;
 		}
 	}
-    else if (board[0] != '0' && board[1] != '1' && board[2] != '2' 
-                    && board[3] != '3' && board[4] != '4' && board[5] != '5' 
-                  && board[6] != '6' && board[7] != '7' && board[8] != '8')
+    else if (board_bool[0] != '0' && board_bool[1] != '0' && board_bool[2] != '0' 
+                    && board_bool[3] != '0' && board_bool[4] != '0' && board_bool[5] != '0' 
+                  && board_bool[6] != '0' && board_bool[7] != '0' && board_bool[8] != '0')
 
         return 0;
     else
@@ -130,7 +130,7 @@ int minimax(char board[], char board_bool[], int mark)
     	o_mark = '0';
     }
 
-    int score = isGameOver(board, o_mark, mark); 
+    int score = isGameOver(board, board_bool, o_mark, mark); 
   
     // If Maximizer has won the game return his/her 
     // evaluated score 
@@ -181,7 +181,7 @@ int minimax2(char board[], char board_bool[], int mark)
     	o_mark = '0';
     }
 
-    int score = isGameOver(board, o_mark, mark); 
+    int score = isGameOver(board, board_bool, o_mark, mark); 
   
     // If Maximizer has won the game return his/her 
     // evaluated score 
@@ -298,7 +298,7 @@ int main()
 
 		printBoard(board);
 
-		y = isGameOver(board, Player_1, Player_2);
+		y = isGameOver(board, board_bool, Player_1, Player_2);
 		if(y!=-1)
 		{
 			break;
@@ -308,7 +308,7 @@ int main()
 
 		printBoard(board);
 
-		y = isGameOver(board, Player_1, Player_2);
+		y = isGameOver(board, board_bool, Player_1, Player_2);
 		if(y!=-1)
 		{
 			break;
