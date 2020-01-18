@@ -293,6 +293,12 @@ int main()
 		cout << "\nChoose a place to make your move.\n";
 		cin >> x;
 
+		if(board_bool[x] == '1')
+		{
+			cout << "Invalid Move.\n";
+			continue;
+		}
+
 		board[x] = Player_1;
 		board_bool[x] = '1';
 
